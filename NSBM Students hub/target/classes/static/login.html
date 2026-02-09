@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - NSBM Student Hub</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="glass-container login-card">
+            <h1 class="logo" style="justify-content: center; margin-bottom: 2rem;">
+                <!-- Simple SVG Logo -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                Student Hub
+            </h1>
+            <h2 class="login-title">Welcome Back</h2>
+            
+            <form action="/login" method="post">
+                <div class="form-group">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" name="username" class="form-input" required placeholder="Enter your username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-input" required placeholder="Enter your password">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Sign In</button>
+            </form>
+            
+            <div style="margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
+                <p>Default Admin: <strong>admin / admin123</strong></p>
+                <p>Default User: <strong>user / user123</strong></p>
+            </div>
+            
+            <!-- Error Message handling via URL param -->
+            <script>
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.has('error')) {
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'alert alert-error';
+                    errorDiv.style.display = 'block';
+                    errorDiv.style.marginTop = '1rem';
+                    errorDiv.textContent = 'Invalid username or password';
+                    document.querySelector('form').before(errorDiv);
+                }
+                if (urlParams.has('logout')) {
+                    const infoDiv = document.createElement('div');
+                    infoDiv.className = 'alert';
+                    infoDiv.style.background = '#d1fae5';
+                    infoDiv.style.color = '#065f46';
+                    infoDiv.style.display = 'block';
+                    infoDiv.style.marginTop = '1rem';
+                    infoDiv.textContent = 'You have been logged out.';
+                    document.querySelector('form').before(infoDiv);
+                }
+            </script>
+        </div>
+    </div>
+</body>
+</html>
